@@ -1,0 +1,156 @@
+-- lp_farming_daily.crops_record definition
+
+CREATE TABLE `crops_record` (
+  `crops_record_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `work_record_id` bigint(18) NOT NULL,
+  `crops_code` bigint(18) NOT NULL,
+  `crops_name` text NOT NULL,
+  `cultivar_code` bigint(18) NOT NULL,
+  `cultivar_name` text NOT NULL,
+  `work_type` text NOT NULL,
+  `use_amount` int(18) NOT NULL,
+  `use_unit_code` bigint(18) NOT NULL,
+  `use_unit` char(8) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`crops_record_id`),
+  KEY `cropsrecord_idx_wrid` (`work_record_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.daily_report definition
+
+CREATE TABLE `daily_report` (
+  `daily_report_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `user_id` char(20) NOT NULL,
+  `date` char(8) NOT NULL,
+  `min_temp` float NOT NULL DEFAULT -9999,
+  `max_temp` float NOT NULL DEFAULT -9999,
+  `precipitation` float NOT NULL DEFAULT -9999,
+  `humidity` float NOT NULL DEFAULT -9999,
+  `weather_id` bigint(18) NOT NULL DEFAULT -9999,
+  `weather_main` char(60) NOT NULL DEFAULT '',
+  `weather_description` char(60) NOT NULL DEFAULT '',
+  `weather_icon` char(20) NOT NULL DEFAULT '',
+  `work_remark` mediumtext NOT NULL,
+  `batch_flag` tinyint(1) NOT NULL DEFAULT 0,
+  `geo_mapping_code` bigint(18) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`daily_report_id`),
+  KEY `dailyreport_idx_userid_date_bflag` (`user_id`,`date`,`batch_flag`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.etc_record definition
+
+CREATE TABLE `etc_record` (
+  `etc_record_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `work_record_id` bigint(18) NOT NULL,
+  `work_etc` text NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`etc_record_id`),
+  KEY `etcrecord_idx_wrid` (`work_record_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.farm definition
+
+CREATE TABLE `farm` (
+  `farm_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `user_id` char(20) NOT NULL,
+  `farm_name` char(255) NOT NULL,
+  `farm_owner` char(20) NOT NULL,
+  `address` text NOT NULL,
+  `detail_address` text NOT NULL,
+  `origin_latitude` text NOT NULL,
+  `origin_longitude` text NOT NULL,
+  `convert_address` text NOT NULL,
+  `geo_mapping_code` bigint(18) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`farm_id`),
+  KEY `farm_idx_userid_geocode` (`user_id`,`geo_mapping_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.fertilizer_record definition
+
+CREATE TABLE `fertilizer_record` (
+  `fertilizer_record_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `work_record_id` bigint(18) NOT NULL,
+  `fertilizer_code` bigint(18) NOT NULL,
+  `fertilizer_name` text NOT NULL,
+  `use_amount` int(18) NOT NULL,
+  `use_unit_code` bigint(18) NOT NULL,
+  `use_unit` char(8) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`fertilizer_record_id`),
+  KEY `ftrrecord_idx_wrid` (`work_record_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.ploughland definition
+
+CREATE TABLE `ploughland` (
+  `ploughland_id` bigint(18) NOT NULL AUTO_INCREMENT COMMENT '경작지 ID',
+  `ploughland_name` text NOT NULL COMMENT '경작지명',
+  `ploughland_type` varchar(50) NOT NULL COMMENT '재배방식(시설:facility,노지:field)',
+  `crops_code` bigint(18) NOT NULL COMMENT '작물코드',
+  `crops_name` varchar(100) NOT NULL COMMENT '작물명',
+  `cultivar_code` bigint(18) NOT NULL COMMENT '품종코드',
+  `cultivar_name` varchar(100) NOT NULL COMMENT '품종명',
+  `farm_id` bigint(18) NOT NULL COMMENT '농장 ID',
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0 COMMENT '삭제여부(0:존재, 1:삭제)',
+  PRIMARY KEY (`ploughland_id`),
+  KEY `ploughland_idx_farmid` (`farm_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
+
+-- lp_farming_daily.protection_record definition
+
+CREATE TABLE `protection_record` (
+  `protection_record_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `work_record_id` bigint(18) NOT NULL,
+  `protection_code` bigint(18) NOT NULL,
+  `protection_name` text NOT NULL,
+  `use_amount` int(18) NOT NULL,
+  `use_unit_code` bigint(18) NOT NULL,
+  `use_unit` char(8) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`protection_record_id`),
+  KEY `prtrecord_idx_wrid` (`work_record_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.`user` definition
+
+CREATE TABLE `user` (
+  `user_id` char(20) NOT NULL,
+  `password` text NOT NULL,
+  `email_address` char(255) DEFAULT NULL,
+  `phone_number` char(255) DEFAULT NULL,
+  `register_date` varchar(8) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`),
+  KEY `user_idx_email_phone` (`email_address`,`phone_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- lp_farming_daily.water_record definition
+
+CREATE TABLE `water_record` (
+  `water_record_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `work_record_id` bigint(18) NOT NULL,
+  `use_amount` int(18) NOT NULL,
+  `use_unit_code` bigint(18) NOT NULL,
+  `use_unit` char(8) NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`water_record_id`),
+  KEY `waterrecord_idx_wrid` (`work_record_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+
+-- lp_farming_daily.work_record definition
+
+CREATE TABLE `work_record` (
+  `work_record_id` bigint(18) NOT NULL AUTO_INCREMENT,
+  `daily_report_id` bigint(18) NOT NULL,
+  `ploughland_id` bigint(18) NOT NULL,
+  `work_type_code` bigint(18) NOT NULL,
+  `work_type` text NOT NULL,
+  `work_name_code` bigint(18) NOT NULL,
+  `work_name` text NOT NULL,
+  `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`work_record_id`),
+  KEY `workrecord_idx_drid_plid_wtcode_wncode` (`daily_report_id`,`ploughland_id`,`work_type_code`,`work_name_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

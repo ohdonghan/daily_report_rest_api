@@ -1,0 +1,53 @@
+{
+  "name": "farming-daily-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon --watch ./  app.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "axios": "^0.21.1",
+    "ci": "^2.1.1",
+    "compute-cosine-similarity": "^1.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^9.0.2",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "fast-levenshtein": "^3.0.0",
+    "hanspell": "^0.8.7",
+    "http-errors": "~1.6.3",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "khaiii": "^0.0.2",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-ejs": "^4.3.0",
+    "koa-router": "^10.0.0",
+    "koa2-ratelimit": "^0.9.0",
+    "levenshtein": "^1.0.5",
+    "lodash": "^4.17.21",
+    "log4js": "^6.3.0",
+    "mariadb": "^2.5.3",
+    "mongoose": "^5.12.8",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "node-khaiii": "^0.1.1",
+    "node-levenshtein": "^3.0.7",
+    "node-pre-gyp": "^0.17.0",
+    "nodemailer": "^6.6.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "proj4": "^2.7.5",
+    "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "2.3.0"
+  }
+}

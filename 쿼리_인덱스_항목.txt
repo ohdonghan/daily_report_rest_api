@@ -1,0 +1,38 @@
+사용자 정보 (적용완료)
+ - 이메일 주소
+
+사용자 인증
+ - 이메일 주소
+
+농장 주소 Mapping 테이블 (적용완료)
+ - 법정동 코드
+
+농장날씨  (적용완료)
+ - 행정동 코드
+ - 날짜
+
+경작지 (적용완료)
+ - 농장 아이디
+
+
+작물, 품종  (적용완료)
+ - cropsCode
+
+농작업 유형  (적용완료)
+ - workTypeCode
+
+사용단위 (적용완료)
+ - unitType
+ - unitCode
+
+영농일지   (적용완료)
+
+ - 사용자 아이디 (daily_report)  
+ - 일자 (daily_report)  
+
+ - 영농일지 아이디 (work_record)
+ - 경작지 아이디 (work_record)
+ - workTypeCode (work_record)
+ - workNameCode (work_record)
+ 
+ - 작업유형 아이디 (etc_record, fertilizer,record, water_record, protection _record, crops_record)
